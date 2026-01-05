@@ -1,24 +1,54 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './auth/Login';
 import Signup from './auth/Signup';
-import DomainPage from './pages/DomainPage';
+import Dashboard from './pages/Dashboard';
+import Domains from './pages/Domains';
+import Roles from './pages/Roles';
+import Skills from './pages/Skills';
 import ProtectedRoute from './routes/ProtectedRoute';
+import PublicRoute from './routes/PublicRoute';
 
 function App() {
     return (
         <Router>
             <Routes>
-                <Route path="/login" element={<Login />} />
-                <Route path="/signup" element={<Signup />} />
-                <Route
-                    path="/domain"
-                    element={
-                        <ProtectedRoute>
-                            <DomainPage />
-                        </ProtectedRoute>
-                    }
-                />
-                <Route path="/" element={<Navigate to="/login" />} />
+                {/* Public Routes - Redirect to dashboard if logged in */}
+                <Route path="/login" element={
+                    <PublicRoute>
+                        <Login />
+                    </PublicRoute>
+                } />
+                <Route path="/signup" element={
+                    <PublicRoute>
+                        <Signup />
+                    </PublicRoute>
+                } />
+
+                {/* Protected Routes - Redirect to login if not logged in */}
+                <Route path="/dashboard" element={
+                    <ProtectedRoute>
+                        <Dashboard />
+                    </ProtectedRoute>
+                } />
+                <Route path="/domains" element={
+                    <ProtectedRoute>
+                        <Domains />
+                    </ProtectedRoute>
+                } />
+                <Route path="/roles/:domain" element={
+                    <ProtectedRoute>
+                        <Roles />
+                    </ProtectedRoute>
+                } />
+                <Route path="/skills/:role" element={
+                    <ProtectedRoute>
+                        <Skills />
+                    </ProtectedRoute>
+                } />
+
+                {/* Default Redirects */}
+                <Route path="/" element={<Navigate to="/login" replace />} />
+                <Route path="*" element={<Navigate to="/dashboard" replace />} />
             </Routes>
         </Router>
     );

@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../services/firebase';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import './auth.css';
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -14,84 +13,77 @@ function Login() {
     const handleLogin = async (e) => {
         e.preventDefault();
         setError('');
-
         try {
             await signInWithEmailAndPassword(auth, email, password);
-            navigate('/domain');
+            // Navigation is handled by PublicRoute/App routing logic
         } catch (err) {
-            setError(err.message);
+            setError('Invalid email or password');
         }
     };
 
     return (
-        <div className="auth-page">
+        <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
             <motion.div
-                className="auth-container"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
+                className="max-w-md w-full bg-white rounded-xl shadow-lg p-8"
             >
-                <h2>Login</h2>
-                <form onSubmit={handleLogin} className="auth-form">
-                    <motion.div
-                        className="form-group"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.1 }}
-                    >
-                        <label>Email</label>
+                <div className="text-center mb-8">
+                    <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome Back</h1>
+                    <p className="text-gray-500">Sign in to continue your journey</p>
+                </div>
+
+                <form onSubmit={handleLogin} className="space-y-6">
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
                         <input
                             type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            placeholder="you@example.com"
+                            className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors outline-none"
+                            placeholder="student@example.com"
                             required
                         />
-                    </motion.div>
-                    <motion.div
-                        className="form-group"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.2 }}
-                    >
-                        <label>Password</label>
+                    </div>
+
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Password</label>
                         <input
                             type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
+                            className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors outline-none"
                             placeholder="••••••••"
                             required
                         />
-                    </motion.div>
+                    </div>
+
                     {error && (
-                        <motion.div
-                            className="error-message"
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            animate={{ opacity: 1, scale: 1 }}
+                        <motion.p
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            className="text-red-500 text-sm text-center bg-red-50 p-3 rounded-lg"
                         >
                             {error}
-                        </motion.div>
+                        </motion.p>
                     )}
+
                     <motion.button
-                        type="submit"
-                        className="submit-button"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.3 }}
-                        whileHover={{ scale: 1.01 }}
+                        whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
+                        type="submit"
+                        className="w-full py-3 bg-indigo-600 text-white rounded-lg font-semibold shadow-md hover:bg-indigo-700 transition-colors focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                     >
-                        Login
+                        Sign In
                     </motion.button>
                 </form>
-                <motion.div
-                    className="auth-footer"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.4 }}
-                >
-                    Don't have an account? <a href="/signup">Sign up</a>
-                </motion.div>
+
+                <p className="text-center mt-6 text-gray-600">
+                    Don't have an account?{' '}
+                    <Link to="/signup" className="text-indigo-600 font-semibold hover:text-indigo-800 transition-colors">
+                        Sign up
+                    </Link>
+                </p>
             </motion.div>
         </div>
     );
