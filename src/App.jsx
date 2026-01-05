@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './auth/Login';
 import Signup from './auth/Signup';
+import VerifyEmail from './auth/VerifyEmail';
 import Dashboard from './pages/Dashboard';
 import Domains from './pages/Domains';
 import Roles from './pages/Roles';
@@ -29,6 +30,7 @@ function App() {
                         <Signup />
                     </PublicRoute>
                 } />
+                <Route path="/verify-email" element={<VerifyEmail />} />
 
                 {/* Protected Routes - Redirect to login if not logged in */}
                 <Route path="/dashboard" element={

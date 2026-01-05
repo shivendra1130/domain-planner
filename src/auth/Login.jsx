@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../services/firebase';
+import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { auth, googleProvider } from '../services/firebase';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Particles from '../components/Particles';
@@ -14,9 +14,23 @@ function Login() {
         e.preventDefault();
         setError('');
         try {
-            await signInWithEmailAndPassword(auth, email, password);
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            if (!userCredential.user.emailVerified) {
+                await auth.signOut();
+                setError('Please verify your email before logging in. Check your inbox.');
+                return;
+            }
         } catch (err) {
             setError('Invalid email or password');
+        }
+    };
+
+    const handleGoogleLogin = async () => {
+        setError('');
+        try {
+            await signInWithPopup(auth, googleProvider);
+        } catch (err) {
+            setError('Google sign-in failed. Please try again.');
         }
     };
 
@@ -91,6 +105,32 @@ function Login() {
                         Sign In
                     </motion.button>
                 </form>
+
+                <div className="flex items-center gap-4 my-6">
+                    <div className="h-px flex-1 bg-zinc-800" />
+                    <span className="text-xs uppercase text-zinc-500 tracking-[0.2em]">or</span>
+                    <div className="h-px flex-1 bg-zinc-800" />
+                </div>
+
+                <motion.button
+                    whileHover={{ scale: 1.01 }}
+                    whileTap={{ scale: 0.99 }}
+                    type="button"
+                    onClick={handleGoogleLogin}
+                    className="w-full py-3 bg-white/90 text-zinc-900 font-semibold tracking-wide text-sm shadow-lg hover:bg-white transition-colors border border-zinc-200 rounded-sm cursor-target flex items-center justify-center gap-3"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 48 48"
+                        className="w-5 h-5"
+                    >
+                        <path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.1 29.3 35 24 35c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.3 0 6.3 1.2 8.6 3.2l5.7-5.7C34.9 3.6 29.7 1 24 1 11.8 1 2 10.8 2 23s9.8 22 22 22c11 0 21-8 21-22 0-1.5-.2-3-.4-4.5z"/>
+                        <path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.2 16.6 18.7 13 24 13c3.3 0 6.3 1.2 8.6 3.2l5.7-5.7C34.9 3.6 29.7 1 24 1 15.4 1 8.1 5.8 6.3 14.7z"/>
+                        <path fill="#4CAF50" d="M24 45c5.2 0 10.1-1.9 13.7-5.2l-6.3-5.3C29.3 35 26.8 36 24 36c-5.2 0-9.5-3.4-11.1-8.1l-6.6 5.1C8.1 40.2 15.4 45 24 45z"/>
+                        <path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-1 2.6-3 4.7-5.6 6.1l6.3 5.3C38.7 36.6 41 30.6 41 24c0-1.5-.2-3-.4-4.5z"/>
+                    </svg>
+                    Continue with Google
+                </motion.button>
 
                 <p className="text-center mt-8 text-zinc-500 text-sm">
                     Don't have an account?{' '}
