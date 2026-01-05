@@ -3,6 +3,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../services/firebase';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import Particles from '../components/Particles';
 
 function Signup() {
     const [email, setEmail] = useState('');
@@ -20,12 +21,26 @@ function Signup() {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-zinc-950 px-4 font-sans">
+        <div className="min-h-screen relative bg-zinc-950 font-sans overflow-hidden flex items-center justify-center">
+            {/* Background Particles */}
+            <div className="absolute inset-0 z-0">
+                <Particles
+                    particleColors={['#ffffff', '#a1a1aa']}
+                    particleCount={200}
+                    particleSpread={10}
+                    speed={0.1}
+                    particleBaseSize={100}
+                    moveParticlesOnHover={true}
+                    alphaParticles={false}
+                    disableRotation={false}
+                />
+            </div>
+
             <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
-                className="max-w-md w-full bg-zinc-900 border border-zinc-800 p-8 shadow-2xl rounded-sm"
+                className="max-w-md w-full bg-zinc-900/80 backdrop-blur-md border border-zinc-800 p-8 shadow-2xl rounded-sm relative z-10 mx-4"
             >
                 <div className="text-center mb-10">
                     <h1 className="text-3xl font-serif text-white mb-2 tracking-tight">Create Account</h1>
@@ -39,7 +54,7 @@ function Signup() {
                             type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className="w-full px-4 py-3 bg-zinc-950 text-white border border-zinc-700 focus:border-zinc-500 focus:ring-0 transition-colors outline-none placeholder-zinc-700 rounded-sm"
+                            className="w-full px-4 py-3 bg-zinc-950/50 text-white border border-zinc-700 focus:border-zinc-500 focus:ring-0 transition-colors outline-none placeholder-zinc-700 rounded-sm"
                             placeholder="student@example.com"
                             required
                         />
@@ -51,7 +66,7 @@ function Signup() {
                             type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            className="w-full px-4 py-3 bg-zinc-950 text-white border border-zinc-700 focus:border-zinc-500 focus:ring-0 transition-colors outline-none placeholder-zinc-700 rounded-sm"
+                            className="w-full px-4 py-3 bg-zinc-950/50 text-white border border-zinc-700 focus:border-zinc-500 focus:ring-0 transition-colors outline-none placeholder-zinc-700 rounded-sm"
                             placeholder="••••••••"
                             required
                         />

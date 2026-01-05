@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { auth } from '../services/firebase';
+import DecryptedText from '../components/DecryptedText';
 
 const trends = [
     { name: 'Web Development', demand: 'High', salary: '₹8–12 LPA', color: 'bg-zinc-200', percent: 90 },
@@ -16,8 +17,21 @@ export default function Dashboard() {
             <div className="max-w-5xl mx-auto">
                 <header className="flex justify-between items-center mb-16 border-b border-zinc-900 pb-8">
                     <div>
-                        <h1 className="text-4xl font-serif text-white mb-2 tracking-tight">Career Trends</h1>
-                        <p className="text-zinc-500 text-sm uppercase tracking-widest">Market Analysis & Insights</p>
+                        <h1 className="text-4xl font-serif text-white mb-2 tracking-tight">
+                            <DecryptedText
+                                text="Career Trends"
+                                animateOn="view" // Scramble on load
+                                className="cursor-pointer"
+                            />
+                        </h1>
+                        <p className="text-zinc-500 text-sm uppercase tracking-widest">
+                            <DecryptedText
+                                text="Market Analysis & Insights"
+                                animateOn="view"
+                                speed={80} // Slower for subheader
+                                className="cursor-default"
+                            />
+                        </p>
                     </div>
                     <button
                         onClick={() => auth.signOut()}
