@@ -31,11 +31,11 @@ export default function Domains() {
                 <header className="mb-16 border-b border-zinc-900 pb-8">
                     <button
                         onClick={() => navigate('/dashboard')}
-                        className="text-zinc-500 hover:text-white mb-6 text-xs uppercase tracking-widest flex items-center gap-2 transition-colors"
+                        className="text-zinc-500 hover:text-white mb-6 text-xs uppercase tracking-widest flex items-center gap-2 transition-colors cursor-target"
                     >
                         ← Dashboard
                     </button>
-                    <h1 className="text-4xl font-serif text-white tracking-tight">Select Domain</h1>
+                    <h1 className="text-4xl font-serif text-white tracking-tight cursor-target">Select Domain</h1>
                 </header>
 
                 <div className="grid md:grid-cols-3 gap-8">
@@ -46,7 +46,7 @@ export default function Domains() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: index * 0.1 }}
                             whileHover={{ y: -4 }}
-                            className="bg-zinc-950 border border-zinc-800 p-8 hover:border-zinc-500 transition-all rounded-sm group relative"
+                            className="bg-zinc-950 border border-zinc-800 p-8 hover:border-zinc-500 transition-all rounded-sm group relative cursor-target"
                         >
                             <div className="text-6xl font-serif text-zinc-900 mb-6 absolute top-4 right-4 opacity-50 group-hover:opacity-100 group-hover:text-zinc-800 transition-all">
                                 {domain.icon}
@@ -57,7 +57,7 @@ export default function Domains() {
                             </p>
                             <button
                                 onClick={() => navigate(`/roles/${domain.id}`)}
-                                className="w-full py-4 px-6 bg-zinc-900 border border-zinc-800 text-zinc-400 text-xs font-bold uppercase tracking-widest rounded-sm hover:bg-white hover:text-zinc-950 transition-all"
+                                className="w-full py-4 px-6 bg-zinc-900 border border-zinc-800 text-zinc-400 text-xs font-bold uppercase tracking-widest rounded-sm hover:bg-white hover:text-zinc-950 transition-all cursor-target"
                             >
                                 View Roles
                             </button>
