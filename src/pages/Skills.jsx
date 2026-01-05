@@ -26,7 +26,7 @@ const roleTitles = {
 export default function Skills() {
     const { role } = useParams();
     const navigate = useNavigate();
-    const skills = skillsData[role] || ['HTML', 'CSS', 'JavaScript']; // default fallback
+    const skills = skillsData[role] || ['HTML', 'CSS', 'JavaScript'];
     const roleTitle = roleTitles[role] || 'Role';
 
     const [completed, setCompleted] = useState({});
@@ -46,30 +46,30 @@ export default function Skills() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 p-8">
+        <div className="min-h-screen bg-zinc-950 p-8 text-zinc-200">
             <div className="max-w-2xl mx-auto">
                 <header className="mb-12">
                     <button
                         onClick={() => navigate(-1)}
-                        className="text-gray-500 hover:text-gray-900 mb-4 flex items-center gap-2"
+                        className="text-zinc-500 hover:text-white mb-4 flex items-center gap-2 transition-colors"
                     >
                         ← Back to Roles
                     </button>
-                    <h1 className="text-4xl font-bold text-gray-900">{roleTitle} Skills</h1>
-                    <p className="text-gray-600 mt-2">Master these to succeed</p>
+                    <h1 className="text-4xl font-bold text-white">{roleTitle} Skills</h1>
+                    <p className="text-zinc-400 mt-2">Master these to succeed</p>
                 </header>
 
-                <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                <div className="bg-zinc-900 rounded-2xl border border-zinc-800 overflow-hidden">
                     {skills.map((skill, index) => (
                         <div
                             key={skill}
                             onClick={() => toggleSkill(skill)}
-                            className="p-6 border-b border-gray-50 hover:bg-gray-50 cursor-pointer transition-colors flex items-center justify-between group last:border-0"
+                            className="p-6 border-b border-zinc-800 hover:bg-zinc-800/50 cursor-pointer transition-colors flex items-center justify-between group last:border-0"
                         >
                             <div className="flex items-center gap-4">
                                 <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-colors ${completed[skill]
                                         ? 'bg-green-500 border-green-500'
-                                        : 'border-gray-300 group-hover:border-indigo-400'
+                                        : 'border-zinc-600 group-hover:border-indigo-400'
                                     }`}>
                                     {completed[skill] && (
                                         <motion.svg
@@ -84,7 +84,7 @@ export default function Skills() {
                                         </motion.svg>
                                     )}
                                 </div>
-                                <span className={`text-lg font-medium transition-colors ${completed[skill] ? 'text-gray-400 line-through' : 'text-gray-700'
+                                <span className={`text-lg font-medium transition-colors ${completed[skill] ? 'text-zinc-600 line-through' : 'text-zinc-200'
                                     }`}>
                                     {skill}
                                 </span>
@@ -96,7 +96,7 @@ export default function Skills() {
                                         initial={{ opacity: 0, x: 10 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         exit={{ opacity: 0 }}
-                                        className="text-sm font-medium text-green-600 bg-green-50 px-3 py-1 rounded-full"
+                                        className="text-sm font-medium text-green-400 bg-green-900/30 px-3 py-1 rounded-full"
                                     >
                                         🎉 Complete!
                                     </motion.span>

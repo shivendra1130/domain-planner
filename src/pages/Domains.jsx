@@ -26,17 +26,17 @@ export default function Domains() {
     const navigate = useNavigate();
 
     return (
-        <div className="min-h-screen bg-gray-50 p-8">
+        <div className="min-h-screen bg-zinc-950 p-8 text-zinc-200">
             <div className="max-w-6xl mx-auto">
                 <header className="mb-12">
                     <button
                         onClick={() => navigate('/dashboard')}
-                        className="text-gray-500 hover:text-gray-900 mb-4 flex items-center gap-2"
+                        className="text-zinc-500 hover:text-white mb-4 flex items-center gap-2 transition-colors"
                     >
                         ← Back to Dashboard
                     </button>
-                    <h1 className="text-4xl font-bold text-gray-900">Select a Domain</h1>
-                    <p className="text-gray-600 mt-2">Choose a field you want to explore</p>
+                    <h1 className="text-4xl font-bold text-white">Select a Domain</h1>
+                    <p className="text-zinc-400 mt-2">Choose a field you want to explore</p>
                 </header>
 
                 <div className="grid md:grid-cols-3 gap-8">
@@ -47,16 +47,16 @@ export default function Domains() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: index * 0.1 }}
                             whileHover={{ y: -5 }}
-                            className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md border border-gray-100 transition-all"
+                            className="bg-zinc-900 rounded-2xl p-8 border border-zinc-800 hover:border-zinc-600 transition-all hover:shadow-lg hover:shadow-indigo-500/10"
                         >
                             <div className="text-4xl mb-6">{domain.icon}</div>
-                            <h2 className="text-2xl font-bold text-gray-900 mb-4">{domain.title}</h2>
-                            <p className="text-gray-600 mb-8 leading-relaxed">
+                            <h2 className="text-2xl font-bold text-white mb-4">{domain.title}</h2>
+                            <p className="text-zinc-400 mb-8 leading-relaxed">
                                 {domain.description}
                             </p>
                             <button
                                 onClick={() => navigate(`/roles/${domain.id}`)}
-                                className="w-full py-3 px-6 bg-white border-2 border-indigo-600 text-indigo-600 rounded-xl font-semibold hover:bg-indigo-50 transition-colors"
+                                className="w-full py-3 px-6 bg-zinc-950 border-2 border-indigo-500 text-indigo-400 rounded-xl font-semibold hover:bg-indigo-500 hover:text-white transition-all"
                             >
                                 View Roles
                             </button>

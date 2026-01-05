@@ -12,16 +12,16 @@ export default function Dashboard() {
     const navigate = useNavigate();
 
     return (
-        <div className="min-h-screen bg-gray-50 p-8">
+        <div className="min-h-screen bg-zinc-950 p-8 text-zinc-200">
             <div className="max-w-5xl mx-auto">
                 <header className="flex justify-between items-center mb-12">
                     <div>
-                        <h1 className="text-4xl font-bold text-gray-900 mb-2">Explore Career Trends</h1>
-                        <p className="text-gray-600 text-lg">Discover the most in-demand domains and plan your future.</p>
+                        <h1 className="text-4xl font-bold text-white mb-2">Explore Career Trends</h1>
+                        <p className="text-zinc-400 text-lg">Discover the most in-demand domains and plan your future.</p>
                     </div>
                     <button
                         onClick={() => auth.signOut()}
-                        className="px-4 py-2 border border-gray-300 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
+                        className="px-4 py-2 border border-zinc-700 rounded-lg text-zinc-400 hover:bg-zinc-900 hover:text-white transition-colors"
                     >
                         Sign Out
                     </button>
@@ -34,11 +34,11 @@ export default function Dashboard() {
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: index * 0.1 }}
-                            className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 flex items-center justify-between"
+                            className="bg-zinc-900 rounded-xl p-6 border border-zinc-800 flex items-center justify-between"
                         >
                             <div className="flex-1">
-                                <h3 className="text-xl font-bold text-gray-800 mb-1">{trend.name}</h3>
-                                <div className="flex gap-4 text-sm text-gray-500">
+                                <h3 className="text-xl font-bold text-white mb-1">{trend.name}</h3>
+                                <div className="flex gap-4 text-sm text-zinc-400">
                                     <span className="flex items-center gap-1">
                                         <span className={`w-2 h-2 rounded-full ${trend.color}`}></span>
                                         Demand: {trend.demand}
@@ -47,7 +47,7 @@ export default function Dashboard() {
                                 </div>
                             </div>
 
-                            <div className="w-48 h-2 bg-gray-100 rounded-full ml-8 overflow-hidden">
+                            <div className="w-48 h-2 bg-zinc-800 rounded-full ml-8 overflow-hidden">
                                 <motion.div
                                     initial={{ width: 0 }}
                                     animate={{ width: `${trend.percent}%` }}

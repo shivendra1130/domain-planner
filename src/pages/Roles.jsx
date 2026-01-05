@@ -30,17 +30,17 @@ export default function Roles() {
     const domainTitle = domainTitles[domain] || 'Unknown Domain';
 
     return (
-        <div className="min-h-screen bg-gray-50 p-8">
+        <div className="min-h-screen bg-zinc-950 p-8 text-zinc-200">
             <div className="max-w-4xl mx-auto">
                 <header className="mb-12">
                     <button
                         onClick={() => navigate('/domains')}
-                        className="text-gray-500 hover:text-gray-900 mb-4 flex items-center gap-2"
+                        className="text-zinc-500 hover:text-white mb-4 flex items-center gap-2 transition-colors"
                     >
                         ← Back to Domains
                     </button>
-                    <h1 className="text-4xl font-bold text-gray-900">{domainTitle} Roles</h1>
-                    <p className="text-gray-600 mt-2">Which path suits you best?</p>
+                    <h1 className="text-4xl font-bold text-white">{domainTitle} Roles</h1>
+                    <p className="text-zinc-400 mt-2">Which path suits you best?</p>
                 </header>
 
                 <div className="space-y-4">
@@ -50,15 +50,15 @@ export default function Roles() {
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: index * 0.1 }}
-                            className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 flex items-center justify-between group hover:border-indigo-100 transition-colors"
+                            className="bg-zinc-900 rounded-xl p-6 border border-zinc-800 flex items-center justify-between group hover:border-indigo-500/50 transition-colors"
                         >
                             <div>
-                                <h3 className="text-xl font-bold text-gray-900">{role.title}</h3>
-                                <p className="text-gray-500 text-sm mt-1">{role.desc}</p>
+                                <h3 className="text-xl font-bold text-white">{role.title}</h3>
+                                <p className="text-zinc-400 text-sm mt-1">{role.desc}</p>
                             </div>
                             <button
                                 onClick={() => navigate(`/skills/${role.id}`)}
-                                className="px-6 py-2 bg-indigo-50 text-indigo-600 rounded-lg font-medium opacity-0 group-hover:opacity-100 transition-all translate-x-4 group-hover:translate-x-0"
+                                className="px-6 py-2 bg-zinc-800 text-indigo-400 rounded-lg font-medium opacity-0 group-hover:opacity-100 transition-all translate-x-4 group-hover:translate-x-0 border border-zinc-700 hover:border-indigo-500"
                             >
                                 View Skills →
                             </button>
