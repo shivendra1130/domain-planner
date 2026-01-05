@@ -2,6 +2,7 @@ import { useState, useMemo, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import confetti from 'canvas-confetti';
+import TextType from '../components/TextType';
 
 const skillsData = {
     'frontend-dev': ['HTML5 Semantic Structure', 'CSS3 & Flexbox/Grid', 'Modern JavaScript (ES6+)', 'React.js Architecture'],
@@ -72,8 +73,13 @@ export default function Skills() {
                     </button>
                     <div className="flex justify-between items-end">
                         <div>
-                            <h1 className="text-4xl font-serif text-white tracking-tight capitalize mb-2 cursor-target">
-                                {role?.replace('-', ' ')}
+                            <h1 className="text-4xl font-serif text-white tracking-tight capitalize mb-2 cursor-target min-h-[48px]">
+                                <TextType
+                                    text={role?.replace('-', ' ')}
+                                    typingSpeed={80}
+                                    startDelay={300}
+                                    showCursor={true}
+                                />
                             </h1>
                             <p className="text-zinc-500 text-sm">
                                 Progress: {Math.round(progress)}%
@@ -109,8 +115,8 @@ export default function Skills() {
                             transition={{ delay: index * 0.05 }}
                             onClick={() => toggleSkill(skill.id)}
                             className={`p-5 border rounded-sm flex items-center justify-between cursor-pointer transition-all group cursor-target ${checkedSkills.includes(skill.id)
-                                    ? 'bg-zinc-900 border-zinc-700 opacity-50'
-                                    : 'bg-zinc-950 border-zinc-800 hover:border-zinc-500'
+                                ? 'bg-zinc-900 border-zinc-700 opacity-50'
+                                : 'bg-zinc-950 border-zinc-800 hover:border-zinc-500'
                                 }`}
                         >
                             <span className={`font-medium transition-colors ${checkedSkills.includes(skill.id) ? 'text-zinc-500 line-through' : 'text-zinc-200 group-hover:text-white'
@@ -119,8 +125,8 @@ export default function Skills() {
                             </span>
 
                             <div className={`w-5 h-5 border rounded-sm flex items-center justify-center transition-colors ${checkedSkills.includes(skill.id)
-                                    ? 'bg-zinc-200 border-zinc-200'
-                                    : 'border-zinc-700 group-hover:border-zinc-500'
+                                ? 'bg-zinc-200 border-zinc-200'
+                                : 'border-zinc-700 group-hover:border-zinc-500'
                                 }`}>
                                 {checkedSkills.includes(skill.id) && (
                                     <svg className="w-3 h-3 text-zinc-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">

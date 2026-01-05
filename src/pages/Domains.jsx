@@ -1,5 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import TextType from '../components/TextType';
+import LogoLoop from '../components/LogoLoop';
+import { SiReact, SiNextdotjs, SiTailwindcss, SiFramer, SiNodedotjs, SiPython, SiDocker, SiAmazonwebservices } from 'react-icons/si';
 
 const domains = [
     {
@@ -35,7 +38,14 @@ export default function Domains() {
                     >
                         ← Dashboard
                     </button>
-                    <h1 className="text-4xl font-serif text-white tracking-tight cursor-target">Select Domain</h1>
+                    <h1 className="text-4xl font-serif text-white tracking-tight cursor-target min-h-[48px]">
+                        <TextType
+                            text="Select Domain"
+                            typingSpeed={100}
+                            startDelay={500}
+                            showCursor={true}
+                        />
+                    </h1>
                 </header>
 
                 <div className="grid md:grid-cols-3 gap-8">
@@ -63,6 +73,28 @@ export default function Domains() {
                             </button>
                         </motion.div>
                     ))}
+                </div>
+
+                <div className="mt-20 border-t border-zinc-900/50 pt-16">
+                    <h3 className="text-zinc-500 text-xs font-bold uppercase tracking-widest mb-8 text-center cursor-target">
+                        Powered By Modern Tech Stack
+                    </h3>
+                    <LogoLoop
+                        logos={[
+                            { node: <SiReact className="text-zinc-500 group-hover:text-[#61DAFB] transition-colors" />, title: "React" },
+                            { node: <SiNextdotjs className="text-zinc-500 group-hover:text-white transition-colors" />, title: "Next.js" },
+                            { node: <SiTailwindcss className="text-zinc-500 group-hover:text-[#38B2AC] transition-colors" />, title: "Tailwind" },
+                            { node: <SiFramer className="text-zinc-500 group-hover:text-white transition-colors" />, title: "Framer" },
+                            { node: <SiNodedotjs className="text-zinc-500 group-hover:text-[#339933] transition-colors" />, title: "Node.js" },
+                            { node: <SiPython className="text-zinc-500 group-hover:text-[#3776AB] transition-colors" />, title: "Python" },
+                            { node: <SiDocker className="text-zinc-500 group-hover:text-[#2496ED] transition-colors" />, title: "Docker" },
+                            { node: <SiAmazonwebservices className="text-zinc-500 group-hover:text-[#FF9900] transition-colors" />, title: "AWS" },
+                        ]}
+                        gap={60}
+                        speed={50}
+                        direction="left"
+                        logoHeight={32}
+                    />
                 </div>
             </div>
         </div>

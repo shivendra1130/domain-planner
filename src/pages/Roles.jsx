@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import TextType from '../components/TextType';
 
 const rolesData = {
     'web-development': [
@@ -39,8 +40,13 @@ export default function Roles() {
                     >
                         ← Back to Domains
                     </button>
-                    <h1 className="text-4xl font-serif text-white tracking-tight capitalize cursor-target">
-                        {domain?.replace('-', ' ')} Roles
+                    <h1 className="text-4xl font-serif text-white tracking-tight capitalize cursor-target min-h-[48px]">
+                        <TextType
+                            text={`${domain?.replace('-', ' ')} Roles`}
+                            typingSpeed={80}
+                            startDelay={300}
+                            showCursor={true}
+                        />
                     </h1>
                 </header>
 
