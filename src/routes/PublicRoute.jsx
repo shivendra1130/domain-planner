@@ -17,7 +17,7 @@ export default function PublicRoute({ children }) {
 
     if (loading) return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
 
-    if (user) {
+    if (user && user.emailVerified) {
         return <Navigate to="/dashboard" replace />;
     }
 

@@ -20,7 +20,7 @@ function ProtectedRoute({ children }) {
         return <div>Loading...</div>;
     }
 
-    return user ? children : <Navigate to="/login" />;
+    return (user && user.emailVerified) ? children : <Navigate to="/login" />;
 }
 
 export default ProtectedRoute;
