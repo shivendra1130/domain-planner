@@ -4,29 +4,29 @@ import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 
 const skillsData = {
-    'frontend-dev': ['HTML', 'CSS', 'JavaScript', 'React'],
-    'backend-dev': ['Node.js', 'Express', 'MongoDB', 'SQL'],
-    'full-stack-dev': ['React', 'Node.js', 'Database Architecture', 'DevOps'],
-    'data-analyst': ['Python', 'SQL', 'Tableau', 'Excel'],
-    'ml-engineer': ['Python', 'TensorFlow', 'Statistics', 'Deep Learning'],
-    'android-dev': ['Java', 'Kotlin', 'Android SDK', 'Material Design'],
-    'ios-dev': ['Swift', 'UIKit', 'SwiftUI', 'Xcode']
+    'frontend-dev': ['HTML5 Semantic Structure', 'CSS3 & Flexbox/Grid', 'Modern JavaScript (ES6+)', 'React.js Architecture'],
+    'backend-dev': ['Node.js Runtime', 'Express.js Framework', 'MongoDB / NoSQL', 'SQL & Normalization'],
+    'full-stack-dev': ['React & State Management', 'REST API Design', 'Database Modeling', 'CI/CD Pipelines'],
+    'data-analyst': ['Python for Data Analysis', 'SQL Queries', 'Tableau/PowerBI', 'Excel Modeling'],
+    'ml-engineer': ['Python & NumPy/Pandas', 'TensorFlow / PyTorch', 'Statistical Analysis', 'Neural Networks'],
+    'android-dev': ['Java Fundamentals', 'Kotlin Coroutines', 'Android SDK', 'Material Design Guidelines'],
+    'ios-dev': ['Swift Language', 'UIKit / SwiftUI', 'Xcode Tools', 'iOS Design Guidelines']
 };
 
 const roleTitles = {
-    'frontend-dev': 'Frontend Developer',
-    'backend-dev': 'Backend Developer',
-    'full-stack-dev': 'Full Stack Developer',
+    'frontend-dev': 'Frontend Engineer',
+    'backend-dev': 'Backend Engineer',
+    'full-stack-dev': 'Full Stack Engineer',
     'data-analyst': 'Data Analyst',
-    'ml-engineer': 'ML Engineer',
-    'android-dev': 'Android Developer',
-    'ios-dev': 'iOS Developer'
+    'ml-engineer': 'ML Practitioner',
+    'android-dev': 'Android Engineer',
+    'ios-dev': 'iOS Engineer'
 };
 
 export default function Skills() {
     const { role } = useParams();
     const navigate = useNavigate();
-    const skills = skillsData[role] || ['HTML', 'CSS', 'JavaScript'];
+    const skills = skillsData[role] || [];
     const roleTitle = roleTitles[role] || 'Role';
 
     const [completed, setCompleted] = useState({});
@@ -34,9 +34,10 @@ export default function Skills() {
     const toggleSkill = (skill) => {
         if (!completed[skill]) {
             confetti({
-                particleCount: 100,
-                spread: 70,
-                origin: { y: 0.6 }
+                particleCount: 50,
+                spread: 50,
+                origin: { y: 0.6 },
+                colors: ['#ffffff', '#a1a1aa', '#52525b'] // Monochrome confetti
             });
         }
         setCompleted(prev => ({
@@ -46,36 +47,44 @@ export default function Skills() {
     };
 
     return (
-        <div className="min-h-screen bg-zinc-950 p-8 text-zinc-200">
-            <div className="max-w-2xl mx-auto">
-                <header className="mb-12">
+        <div className="min-h-screen bg-zinc-950 p-8 text-zinc-200 font-sans">
+            <div className="max-w-3xl mx-auto">
+                <header className="mb-16 border-b border-zinc-900 pb-8">
                     <button
                         onClick={() => navigate(-1)}
-                        className="text-zinc-500 hover:text-white mb-4 flex items-center gap-2 transition-colors"
+                        className="text-zinc-500 hover:text-white mb-6 text-xs uppercase tracking-widest flex items-center gap-2 transition-colors"
                     >
-                        ← Back to Roles
+                        ← Back
                     </button>
-                    <h1 className="text-4xl font-bold text-white">{roleTitle} Skills</h1>
-                    <p className="text-zinc-400 mt-2">Master these to succeed</p>
+                    <h1 className="text-4xl font-serif text-white tracking-tight">{roleTitle}</h1>
+                    <p className="text-zinc-500 text-sm mt-2 uppercase tracking-wide">Competency Checklist</p>
                 </header>
 
-                <div className="bg-zinc-900 rounded-2xl border border-zinc-800 overflow-hidden">
+                <div className="grid gap-px bg-zinc-800 border border-zinc-800 mb-16">
                     {skills.map((skill, index) => (
-                        <div
+                        <motion.div
                             key={skill}
+                            initial={{ opacity: 0, y: 5 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: index * 0.05 }}
                             onClick={() => toggleSkill(skill)}
-                            className="p-6 border-b border-zinc-800 hover:bg-zinc-800/50 cursor-pointer transition-colors flex items-center justify-between group last:border-0"
+                            className={`
+                p-6 cursor-pointer transition-all duration-300 flex items-center justify-between group
+                ${completed[skill] ? 'bg-zinc-900' : 'bg-zinc-950 hover:bg-zinc-900'}
+              `}
                         >
-                            <div className="flex items-center gap-4">
-                                <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-colors ${completed[skill]
-                                        ? 'bg-green-500 border-green-500'
-                                        : 'border-zinc-600 group-hover:border-indigo-400'
-                                    }`}>
+                            <div className="flex items-center gap-6">
+                                <div className={`
+                  w-5 h-5 border flex items-center justify-center transition-all rounded-none
+                  ${completed[skill]
+                                        ? 'bg-zinc-100 border-zinc-100'
+                                        : 'border-zinc-700 group-hover:border-zinc-400'}
+                `}>
                                     {completed[skill] && (
                                         <motion.svg
                                             initial={{ scale: 0 }}
                                             animate={{ scale: 1 }}
-                                            className="w-4 h-4 text-white"
+                                            className="w-3 h-3 text-zinc-900"
                                             fill="none"
                                             viewBox="0 0 24 24"
                                             stroke="currentColor"
@@ -84,7 +93,7 @@ export default function Skills() {
                                         </motion.svg>
                                     )}
                                 </div>
-                                <span className={`text-lg font-medium transition-colors ${completed[skill] ? 'text-zinc-600 line-through' : 'text-zinc-200'
+                                <span className={`text-base font-serif transition-colors ${completed[skill] ? 'text-zinc-600 line-through' : 'text-zinc-300 group-hover:text-white'
                                     }`}>
                                     {skill}
                                 </span>
@@ -96,13 +105,13 @@ export default function Skills() {
                                         initial={{ opacity: 0, x: 10 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         exit={{ opacity: 0 }}
-                                        className="text-sm font-medium text-green-400 bg-green-900/30 px-3 py-1 rounded-full"
+                                        className="text-xs font-bold text-zinc-900 bg-zinc-200 px-3 py-1 uppercase tracking-wider rounded-sm"
                                     >
-                                        🎉 Complete!
+                                        Done
                                     </motion.span>
                                 )}
                             </AnimatePresence>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
             </div>
