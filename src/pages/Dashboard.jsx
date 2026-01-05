@@ -2,7 +2,6 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { auth } from '../services/firebase';
 import TextType from '../components/TextType';
-import DarkVeil from '../components/DarkVeil';
 
 const trends = [
     { name: 'Web Development', demand: 'High', salary: '₹8–12 LPA', color: 'bg-zinc-200', percent: 90 },
@@ -46,44 +45,36 @@ export default function Dashboard() {
                     </button>
                 </header>
 
-                <div className="relative rounded-sm overflow-hidden mb-16 border border-zinc-900">
-                    <DarkVeil
-                        speed={0.2}
-                        hueShift={30}
-                        noiseIntensity={0.2}
-                        resolutionScale={0.5}
-                    />
-                    <div className="relative z-10 grid gap-px bg-zinc-900/50 backdrop-blur-sm">
-                        {trends.map((trend, index) => (
-                            <motion.div
-                                key={trend.name}
-                                initial={{ opacity: 0, x: -10 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: index * 0.1 }}
-                                className="bg-zinc-950/80 p-8 flex flex-col md:flex-row md:items-center justify-between gap-8 hover:bg-zinc-900/90 transition-colors cursor-target backdrop-blur-md"
-                            >
-                                <div className="flex-1">
-                                    <h3 className="text-xl font-serif text-white mb-2">{trend.name}</h3>
-                                    <div className="flex gap-6 text-xs text-zinc-500 font-mono uppercase tracking-wide">
-                                        <span className="flex items-center gap-2">
-                                            <span className="w-1.5 h-1.5 bg-zinc-500 rounded-none"></span>
-                                            Demand: {trend.demand}
-                                        </span>
-                                        <span>Salary: {trend.salary}</span>
-                                    </div>
+                <div className="grid gap-px bg-zinc-900 border border-zinc-900 rounded-sm overflow-hidden mb-16">
+                    {trends.map((trend, index) => (
+                        <motion.div
+                            key={trend.name}
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: index * 0.1 }}
+                            className="bg-zinc-950 p-8 flex flex-col md:flex-row md:items-center justify-between gap-8 hover:bg-zinc-900/30 transition-colors cursor-target"
+                        >
+                            <div className="flex-1">
+                                <h3 className="text-xl font-serif text-white mb-2">{trend.name}</h3>
+                                <div className="flex gap-6 text-xs text-zinc-500 font-mono uppercase tracking-wide">
+                                    <span className="flex items-center gap-2">
+                                        <span className="w-1.5 h-1.5 bg-zinc-500 rounded-none"></span>
+                                        Demand: {trend.demand}
+                                    </span>
+                                    <span>Salary: {trend.salary}</span>
                                 </div>
+                            </div>
 
-                                <div className="w-full md:w-64 h-1 bg-zinc-800 rounded-sm overflow-hidden">
-                                    <motion.div
-                                        initial={{ width: 0 }}
-                                        animate={{ width: `${trend.percent}%` }}
-                                        transition={{ duration: 1, delay: 0.5, ease: "circOut" }}
-                                        className={`h-full ${trend.color}`}
-                                    />
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
+                            <div className="w-full md:w-64 h-1 bg-zinc-900 rounded-sm overflow-hidden">
+                                <motion.div
+                                    initial={{ width: 0 }}
+                                    animate={{ width: `${trend.percent}%` }}
+                                    transition={{ duration: 1, delay: 0.5, ease: "circOut" }}
+                                    className={`h-full ${trend.color}`}
+                                />
+                            </div>
+                        </motion.div>
+                    ))}
                 </div>
 
                 <div className="text-center">

@@ -145,5 +145,5 @@ export default function DarkVeil({
         };
     }, [hueShift, noiseIntensity, scanlineIntensity, speed, scanlineFrequency, warpAmount, resolutionScale]);
 
-    return <canvas ref={ref} className="absolute inset-0 w-full h-full object-cover pointer-events-none opacity-40 mix-blend-screen" />;
+    return <canvas ref={ref} className="absolute inset-0 w-full h-full object-cover pointer-events-none" />;
 }
