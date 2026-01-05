@@ -18,3 +18,7 @@ const app = initializeApp(firebaseConfig);
 // Export Firebase services
 export const auth = getAuth(app);
 export const db = getFirestore(app);
+
+// Set persistence to session only (clears on tab close)
+import { setPersistence, browserSessionPersistence } from "firebase/auth";
+setPersistence(auth, browserSessionPersistence);
