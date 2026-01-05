@@ -54,7 +54,7 @@ function Login() {
                             type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className="w-full px-4 py-3 bg-zinc-950/50 text-white border border-zinc-700 focus:border-zinc-500 focus:ring-0 transition-colors outline-none placeholder-zinc-700 rounded-sm"
+                            className="w-full px-4 py-3 bg-zinc-950/50 text-white border border-zinc-700 focus:border-zinc-500 focus:ring-0 transition-colors outline-none placeholder-zinc-700 rounded-sm cursor-target"
                             placeholder="student@example.com"
                             required
                         />
@@ -66,7 +66,7 @@ function Login() {
                             type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            className="w-full px-4 py-3 bg-zinc-950/50 text-white border border-zinc-700 focus:border-zinc-500 focus:ring-0 transition-colors outline-none placeholder-zinc-700 rounded-sm"
+                            className="w-full px-4 py-3 bg-zinc-950/50 text-white border border-zinc-700 focus:border-zinc-500 focus:ring-0 transition-colors outline-none placeholder-zinc-700 rounded-sm cursor-target"
                             placeholder="••••••••"
                             required
                         />
@@ -86,7 +86,7 @@ function Login() {
                         whileHover={{ scale: 1.01 }}
                         whileTap={{ scale: 0.99 }}
                         type="submit"
-                        className="w-full py-3 bg-zinc-100 text-zinc-900 font-bold uppercase tracking-wider text-xs shadow-lg hover:bg-white transition-colors rounded-sm"
+                        className="w-full py-3 bg-zinc-100 text-zinc-900 font-bold uppercase tracking-wider text-xs shadow-lg hover:bg-white transition-colors rounded-sm cursor-target"
                     >
                         Sign In
                     </motion.button>

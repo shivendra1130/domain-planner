@@ -7,10 +7,16 @@ import Roles from './pages/Roles';
 import Skills from './pages/Skills';
 import ProtectedRoute from './routes/ProtectedRoute';
 import PublicRoute from './routes/PublicRoute';
+import TargetCursor from './components/TargetCursor';
 
 function App() {
     return (
         <Router>
+            <TargetCursor
+                spinDuration={2}
+                hideDefaultCursor={true}
+                parallaxOn={true}
+            />
             <Routes>
                 {/* Public Routes - Redirect to dashboard if logged in */}
                 <Route path="/login" element={
